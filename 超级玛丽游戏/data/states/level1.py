@@ -77,7 +77,7 @@ class Level1(tools._State):
         ground_rect2 = collider.Collider(862, c.GROUND_HEIGHT,  1112, 60)
         ground_rect3 = collider.Collider(2038, c.GROUND_HEIGHT, 1318, 60)
         ground_rect4 = collider.Collider(3440, c.GROUND_HEIGHT, 955, 60)
-        ground_rect5 = collider.Collider(4458, c.GROUND_HEIGHT, 1542, 60)
+        ground_rect5 = collider.Collider(4458, c.GROUND_HEIGHT, 1642, 60)
 
         self.ground_group = pg.sprite.Group(ground_rect1,
                                            ground_rect2,
@@ -106,6 +106,12 @@ class Level1(tools._State):
 
     def setup_steps(self):
         """Create collideable rects for all the steps"""
+        stepFlag1 = collider.Collider(632, 740, 20, 20)
+        stepFlag2 = collider.Collider(1866, 740, 20, 20)
+        stepFlag3 = collider.Collider(3243, 740, 20, 20)
+        stepFlag4 = collider.Collider(4278, 740, 20, 20)
+        stepFlag5 = collider.Collider(5712, 740, 20, 20)
+
         step1 = collider.Collider(3795, 723, 32, 40)
         step2 = collider.Collider(3827, 683, 32, 40)
         step3 = collider.Collider(3859, 643, 32, 40)
@@ -118,19 +124,22 @@ class Level1(tools._State):
         step8 = collider.Collider(4100, 723, 32, 40)
 
 
-        step18 = collider.Collider(7760, 495, 40, 40)
-        step19 = collider.Collider(7803, 452, 40, 40)
-        step20 = collider.Collider(7845, 409, 40, 40)
-        step21 = collider.Collider(7888, 366, 40, 40)
-        step22 = collider.Collider(7931, 323, 40, 40)
-        step23 = collider.Collider(7974, 280, 40, 40)
-        step24 = collider.Collider(8017, 237, 40, 40)
-        step25 = collider.Collider(8060, 194, 40, 40)
-        step26 = collider.Collider(8103, 194, 40, 360)
+        step18 = collider.Collider(5212, 729, 33, 33)
+        step19 = collider.Collider(5250, 693, 33, 33)
+        step20 = collider.Collider(5283, 656, 33, 33)
+        step21 = collider.Collider(5323, 623, 33, 33)
+        step22 = collider.Collider(5358, 586, 33, 33)
+        step23 = collider.Collider(5400, 551, 33, 33)
+        step24 = collider.Collider(5438, 516, 33, 33)
+        step25 = collider.Collider(5475, 480, 33, 33)
+        step26 = collider.Collider(5504, 480, 48, 248)
 
         step27 = collider.Collider(5698, 495, 40, 40)
 
-        self.step_group = pg.sprite.Group(step1,  step2,
+        self.step_group = pg.sprite.Group(stepFlag1, stepFlag2,
+                                          stepFlag3, stepFlag4,
+                                          stepFlag5,
+                                          step1,  step2,
                                           step3,  step4,
                                           step5,  step6,
                                           step7,  step8,
@@ -201,7 +210,7 @@ class Level1(tools._State):
 
     def setup_coin_boxes(self):
         """Creates all the coin boxes and puts them in a sprite group"""
-        coin_box1  = coin_box.Coin_box(4000, c.GROUND_HEIGHT, c.COIN, self.coin_group)
+        coin_box1  = coin_box.Coin_box(5712, c.GROUND_HEIGHT, c.COIN, self.coin_group)
 
         # coin_box1  = coin_box.Coin_box(685, 515, c.COIN, self.coin_group)
         coin_box2  = coin_box.Coin_box(901, 515, c.MUSHROOM, self.powerup_group)
@@ -226,20 +235,22 @@ class Level1(tools._State):
 
     def setup_flag_pole(self):
         """Creates the flag pole at the end of the level"""
-        self.flag = flagpole.Flag(5888, 700)
 
-        pole0 = flagpole.Pole(5888, 347)
-        pole1 = flagpole.Pole(5888, 387)
-        pole2 = flagpole.Pole(5888, 427)
-        pole3 = flagpole.Pole(5888, 467)
-        pole4 = flagpole.Pole(5888, 507)
-        pole5 = flagpole.Pole(5888, 547)
-        pole6 = flagpole.Pole(5888, 577)
-        pole7 = flagpole.Pole(5888, 617)
-        pole8 = flagpole.Pole(5888, 657)
-        pole9 = flagpole.Pole(5888, 700)
+        #flagFinal
+        self.flag = flagpole.Flag(5712, 680)
 
-        finial = flagpole.Finial(5894, 347)
+        pole0 = flagpole.Pole(5712, 347)
+        pole1 = flagpole.Pole(5712, 387)
+        pole2 = flagpole.Pole(5712, 427)
+        pole3 = flagpole.Pole(5712, 467)
+        pole4 = flagpole.Pole(5712, 507)
+        pole5 = flagpole.Pole(5712, 547)
+        pole6 = flagpole.Pole(5712, 577)
+        pole7 = flagpole.Pole(5712, 617)
+        pole8 = flagpole.Pole(5712, 657)
+        pole9 = flagpole.Pole(5712, 680)
+
+        finial = flagpole.Finial(5712, 347)
 
         self.flag_pole_group = pg.sprite.Group(self.flag,
                                                finial,
@@ -256,20 +267,20 @@ class Level1(tools._State):
 
 
         #flag1
-        self.flag1 = flagpole.Flag(680, 700)
+        self.flag1 = flagpole.Flag(643, 680)
 
-        pole10 = flagpole.Pole(680, 347)
-        pole11 = flagpole.Pole(680, 387)
-        pole12 = flagpole.Pole(680, 427)
-        pole13 = flagpole.Pole(680, 467)
-        pole14 = flagpole.Pole(680, 507)
-        pole15 = flagpole.Pole(680, 547)
-        pole16 = flagpole.Pole(680, 577)
-        pole17 = flagpole.Pole(680, 617)
-        pole18 = flagpole.Pole(680, 657)
-        pole19 = flagpole.Pole(680, 700)
+        pole10 = flagpole.Pole(643, 347)
+        pole11 = flagpole.Pole(643, 387)
+        pole12 = flagpole.Pole(643, 427)
+        pole13 = flagpole.Pole(643, 467)
+        pole14 = flagpole.Pole(643, 507)
+        pole15 = flagpole.Pole(643, 547)
+        pole16 = flagpole.Pole(643, 577)
+        pole17 = flagpole.Pole(643, 617)
+        pole18 = flagpole.Pole(643, 657)
+        pole19 = flagpole.Pole(643, 680)
 
-        finial1 = flagpole.Finial(684, 347)
+        finial1 = flagpole.Finial(643, 347)
 
         self.flag_pole_group1 = pg.sprite.Group(self.flag1,
                                                finial1,
@@ -285,20 +296,20 @@ class Level1(tools._State):
                                                pole19)
 
         # flag2
-        self.flag2 = flagpole.Flag(5888, 700)
+        self.flag2 = flagpole.Flag(1872, 680)
 
-        pole20 = flagpole.Pole(5888, 347)
-        pole21 = flagpole.Pole(5888, 387)
-        pole22 = flagpole.Pole(5888, 427)
-        pole23 = flagpole.Pole(5888, 467)
-        pole24 = flagpole.Pole(5888, 507)
-        pole25 = flagpole.Pole(5888, 547)
-        pole26 = flagpole.Pole(5888, 577)
-        pole27 = flagpole.Pole(5888, 617)
-        pole28 = flagpole.Pole(5888, 657)
-        pole29 = flagpole.Pole(5888, 700)
+        pole20 = flagpole.Pole(1872, 347)
+        pole21 = flagpole.Pole(1872, 387)
+        pole22 = flagpole.Pole(1872, 427)
+        pole23 = flagpole.Pole(1872, 467)
+        pole24 = flagpole.Pole(1872, 507)
+        pole25 = flagpole.Pole(1872, 547)
+        pole26 = flagpole.Pole(1872, 577)
+        pole27 = flagpole.Pole(1872, 617)
+        pole28 = flagpole.Pole(1872, 657)
+        pole29 = flagpole.Pole(1872, 680)
 
-        finial2 = flagpole.Finial(5894, 347)
+        finial2 = flagpole.Finial(1872, 347)
 
         self.flag_pole_group2 = pg.sprite.Group(self.flag2,
                                                 finial2,
@@ -314,20 +325,20 @@ class Level1(tools._State):
                                                 pole29)
 
         # flag3
-        self.flag3 = flagpole.Flag(5888, 700)
+        self.flag3 = flagpole.Flag(3248, 680)
 
-        pole30 = flagpole.Pole(5888, 347)
-        pole31 = flagpole.Pole(5888, 387)
-        pole32 = flagpole.Pole(5888, 427)
-        pole33 = flagpole.Pole(5888, 467)
-        pole34 = flagpole.Pole(5888, 507)
-        pole35 = flagpole.Pole(5888, 547)
-        pole36 = flagpole.Pole(5888, 577)
-        pole37 = flagpole.Pole(5888, 617)
-        pole38 = flagpole.Pole(5888, 657)
-        pole39 = flagpole.Pole(5888, 700)
+        pole30 = flagpole.Pole(3248, 347)
+        pole31 = flagpole.Pole(3248, 387)
+        pole32 = flagpole.Pole(3248, 427)
+        pole33 = flagpole.Pole(3248, 467)
+        pole34 = flagpole.Pole(3248, 507)
+        pole35 = flagpole.Pole(3248, 547)
+        pole36 = flagpole.Pole(3248, 577)
+        pole37 = flagpole.Pole(3248, 617)
+        pole38 = flagpole.Pole(3248, 657)
+        pole39 = flagpole.Pole(3248, 680)
 
-        finial3 = flagpole.Finial(5894, 347)
+        finial3 = flagpole.Finial(3248, 347)
 
         self.flag_pole_group3 = pg.sprite.Group(self.flag3,
                                                 finial3,
@@ -343,20 +354,20 @@ class Level1(tools._State):
                                                 pole39)
 
         # flag4
-        self.flag4 = flagpole.Flag(5888, 700)
+        self.flag4 = flagpole.Flag(4278, 680)
 
-        pole40 = flagpole.Pole(5888, 347)
-        pole41 = flagpole.Pole(5888, 387)
-        pole42 = flagpole.Pole(5888, 427)
-        pole43 = flagpole.Pole(5888, 467)
-        pole44 = flagpole.Pole(5888, 507)
-        pole45 = flagpole.Pole(5888, 547)
-        pole46 = flagpole.Pole(5888, 577)
-        pole47 = flagpole.Pole(5888, 617)
-        pole48 = flagpole.Pole(5888, 657)
-        pole49 = flagpole.Pole(5888, 700)
+        pole40 = flagpole.Pole(4278, 347)
+        pole41 = flagpole.Pole(4278, 387)
+        pole42 = flagpole.Pole(4278, 427)
+        pole43 = flagpole.Pole(4278, 467)
+        pole44 = flagpole.Pole(4278, 507)
+        pole45 = flagpole.Pole(4278, 547)
+        pole46 = flagpole.Pole(4278, 577)
+        pole47 = flagpole.Pole(4278, 617)
+        pole48 = flagpole.Pole(4278, 657)
+        pole49 = flagpole.Pole(4278, 680)
 
-        finial4 = flagpole.Finial(5894, 347)
+        finial4 = flagpole.Finial(4278, 347)
 
         self.flag_pole_group4 = pg.sprite.Group(self.flag4,
                                                 finial4,
@@ -421,11 +432,11 @@ class Level1(tools._State):
         check5 = checkpoint.Checkpoint(3750, '5')
         check6 = checkpoint.Checkpoint(4150, '6')
 
-        check11 = checkpoint.Checkpoint(5888, '11', 5, 6)
-        checkF1 = checkpoint.Checkpoint(680, 'flag1', 5, 6)
-        checkF2 = checkpoint.Checkpoint(5888, 'flag2', 5, 6)
-        checkF3 = checkpoint.Checkpoint(5888, 'flag3', 5, 6)
-        checkF4 = checkpoint.Checkpoint(5888, 'flag4', 5, 6)
+        check11 = checkpoint.Checkpoint(5712, '11', 5, 6)
+        checkF1 = checkpoint.Checkpoint(648, 'flag1', 5, 6)
+        checkF2 = checkpoint.Checkpoint(1872, 'flag2', 5, 6)
+        checkF3 = checkpoint.Checkpoint(3248, 'flag3', 5, 6)
+        checkF4 = checkpoint.Checkpoint(4278, 'flag4', 5, 6)
 
         check12 = checkpoint.Checkpoint(5894, '12')
         check13 = checkpoint.Checkpoint(2740, 'secret_mushroom', 360, 40, 12)
