@@ -16,13 +16,24 @@ class Flag(pg.sprite.Sprite):
         self.rect.y = y
         self.state = c.TOP_OF_POLE
 
+    def create_image(self, filename, width, height):
+        """Extracts image from sprite sheet"""
+        image = pg.Surface([width, height]).convert()
+        rect = image.get_rect()
+        self.image_yuandan = setup.GFX[filename]
+        image.blit(self.image_yuandan, (0, 0), (0, 0, 500, 380))
+        image.set_colorkey(c.BLACK)
+        image = pg.transform.scale(image,
+                                   (int(rect.width / 5),
+                                    int(rect.height / 5)))
+        return image
 
     def setup_images(self):
         """Sets up a list of image frames"""
         self.frames = []
 
         self.frames.append(
-            self.get_image(128, 32, 16, 16))
+            self.create_image('flag',501,380))
 
 
     def get_image(self, x, y, width, height):
@@ -79,7 +90,7 @@ class Pole(pg.sprite.Sprite):
         self.frames = []
 
         self.frames.append(
-            self.get_image(263, 144, 2, 16))
+            self.get_image(263, 208, 2, 16))
 
 
     def get_image(self, x, y, width, height):
@@ -117,7 +128,7 @@ class Finial(pg.sprite.Sprite):
         self.frames = []
 
         self.frames.append(
-            self.get_image(228, 120, 8, 8))
+            self.get_image(260, 200, 8, 8))
 
 
     def get_image(self, x, y, width, height):

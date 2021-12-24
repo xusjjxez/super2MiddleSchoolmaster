@@ -32,7 +32,7 @@ class OverheadInfo(object):
         self.create_score_group()
         self.create_info_labels()
         self.create_load_screen_labels()
-        self.create_countdown_clock()
+        # self.create_countdown_clock()
         self.create_coin_counter()
         self.create_flashing_coin()
         self.create_mario_image()
@@ -114,23 +114,26 @@ class OverheadInfo(object):
         self.score_images = []
         self.create_label(self.score_images, '000000', 80, 135)
 
+    def print_text(self, screen, x, y, text, fcolor=(0, 0, 0)):
+        self.font = pg.font.SysFont('SimHei', 50)  # 得分字体
+        self.imgtext = self.font.render(text, True, fcolor)  # 字体渲染
+        screen.blit(self.imgtext, (x, y))
 
     def create_info_labels(self):
         """Creates the labels that describe each info"""
         self.mario_label = []
         self.world_label = []
-        self.time_label = []
+        # self.time_label = []
         self.stage_label = []
-
 
         self.create_label(self.mario_label, 'MARIO', 80, 110)
         self.create_label(self.world_label, 'WORLD', 650, 110)
-        self.create_label(self.time_label, 'TIME', 950, 110)
+        # self.create_label(self.time_label, 'TIME', 950, 110)
         self.create_label(self.stage_label, '1-1', 672, 135)
 
         self.label_list = [self.mario_label,
                            self.world_label,
-                           self.time_label,
+                           # self.time_label,
                            self.stage_label]
 
 
@@ -198,8 +201,8 @@ class OverheadInfo(object):
         game_label = []
         over_label = []
 
-        self.create_label(game_label, 'GAME', 480, 400)
-        self.create_label(over_label, 'OVER', 600, 400)
+        # self.create_label(game_label, '', 480, 400)
+        # self.create_label(over_label, 'OVER', 600, 400)
 
         self.game_over_label = [game_label, over_label]
 
@@ -403,8 +406,8 @@ class OverheadInfo(object):
         for info in self.score_images:
             surface.blit(info.image, info.rect)
 
-        for digit in self.count_down_images:
-                surface.blit(digit.image, digit.rect)
+        # for digit in self.count_down_images:
+        #         surface.blit(digit.image, digit.rect)
 
         for character in self.coin_count_images:
             surface.blit(character.image, character.rect)

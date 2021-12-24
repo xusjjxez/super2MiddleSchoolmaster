@@ -4,6 +4,7 @@ from .. import setup, tools
 from .. import constants as c
 from .. import game_sound
 from ..components import info
+import pygame as pg
 
 
 class LoadScreen(tools._State):
@@ -55,6 +56,11 @@ class GameOver(LoadScreen):
     def __init__(self):
         super(GameOver, self).__init__()
 
+    # 绘制文字
+    def print_text(self, screen, x, y, text, fcolor=(255, 0, 0)):
+        self.font = pg.font.SysFont('SimHei', 130)  # 得分字体
+        self.imgtext = self.font.render(text, True, fcolor)  # 字体渲染
+        screen.blit(self.imgtext, (x, y))
 
     def set_next_state(self):
         """Sets next state"""
@@ -65,17 +71,22 @@ class GameOver(LoadScreen):
         return c.GAME_OVER
 
     def update(self, surface, keys, current_time):
+        size = width, height = 1216,760
         self.current_time = current_time
         self.sound_manager.update(self.persist, None)
 
+        endBg = setup.GFX['middle2']
         if (self.current_time - self.start_time) < 7000:
-            surface.fill(c.BLACK)
+            surface = pg.display.set_mode(size)#新加载一个窗口，适应背景图片大小
+            surface.blit(pg.transform.scale(endBg,size),(0,0)) #将背景图片scale重置下大小，画到screen上，从左上角开始画
+            self.print_text(surface, 360, 350, '二中必胜！')
+            # surface.fill(c.RED)
             self.overhead_info.update(self.game_info)
-            self.overhead_info.draw(surface)
-        elif (self.current_time - self.start_time) < 7200:
-            surface.fill(c.BLACK)
-        elif (self.current_time - self.start_time) < 7235:
-            surface.fill((106, 150, 252))
+            self.overhead_info.draw(surface) #画出画布来
+        # elif (self.current_time - self.start_time) < 7200:
+        #     surface.fill(c.BLUE)
+        # elif (self.current_time - self.start_time) < 7235:
+        #     surface.fill((106, 150, 252))
         else:
             self.done = True
 
@@ -100,7 +111,7 @@ class TimeOut(LoadScreen):
         self.current_time = current_time
 
         if (self.current_time - self.start_time) < 2400:
-            surface.fill(c.BLACK)
+            surface.fill(c.GRAY)
             self.overhead_info.update(self.game_info)
             self.overhead_info.draw(surface)
         else:

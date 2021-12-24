@@ -19,9 +19,9 @@ class Score(object):
         self.x = x
         self.y = y
         if flag_pole:
-            self.y_vel = -4
-        else:
             self.y_vel = -3
+        else:
+            self.y_vel = -2
         self.sprite_sheet = setup.GFX['item_objects']
         self.create_image_dict()
         self.score_string = str(score)
@@ -43,6 +43,21 @@ class Score(object):
         image10 = self.get_image(37, 168, 6, 8)
         image11 = self.get_image(43, 168, 5, 8)
 
+        image12 = self.create_image('gaoyi', 1322, 747)
+        image13 = self.create_image('cai', 361, 655)
+        image14 = self.create_image('tuanjie',471,346)
+        image15 = self.create_image('menghu', 1322, 747)
+        image16 = self.create_image('tongzhou', 361, 655)
+        image17 = self.create_image('chaoyue', 610, 554)
+        image18 = self.create_image('yuandan', 2000, 2000)
+
+        image19 = self.create_image('gaoer', 1322, 747)
+        image20 = self.create_image('gaosan', 1322, 747)
+        image21 = self.create_image('gaokao', 1322, 747)
+
+        # image22 = self.create_image('jixiang',1200, 1000)
+
+
         self.image_dict['0'] = image0
         self.image_dict['1'] = image1
         self.image_dict['2'] = image2
@@ -52,6 +67,19 @@ class Score(object):
         self.image_dict['3'] = image9
         self.image_dict['7'] = image10
         self.image_dict['9'] = image11
+        self.image_dict['高一威武'] = image12
+        # self.image_dict['恭喜发财'] = image13
+        self.image_dict['团结协作'] = image14
+        self.image_dict['猛虎添翼'] = image15
+        self.image_dict['同舟共济'] = image16
+        self.image_dict['超越自我'] = image17
+        self.image_dict['元旦快乐'] = image18
+
+        self.image_dict['高二无敌'] = image19
+        self.image_dict['高三必胜'] = image20
+        self.image_dict['高考加油'] = image21
+
+        # self.image_dict['jixiang'] = image22
 
 
     def get_image(self, x, y, width, height):
@@ -66,14 +94,16 @@ class Score(object):
                                     int(rect.height*c.BRICK_SIZE_MULTIPLIER)))
         return image
 
-
     def create_digit_list(self):
         """Creates the group of images based on score received"""
         self.digit_list = []
         self.digit_group = pg.sprite.Group()
-
-        for digit in self.score_string:
-            self.digit_list.append(Digit(self.image_dict[digit]))
+        print(self.score_string)
+        if self.score_string in self.image_dict.keys():
+            self.digit_list.append(Digit(self.image_dict[self.score_string]))
+        else:
+            for digit in self.score_string:
+                self.digit_list.append(Digit(self.image_dict[digit]))
 
         self.set_rects_for_images()
 
@@ -91,11 +121,12 @@ class Score(object):
         for number in self.digit_list:
             number.rect.y += self.y_vel
 
-        if score_list:
-            self.check_to_delete_floating_scores(score_list, level_info)
+        # if score_list:
+        #     self.check_to_delete_floating_scores(score_list, level_info)
 
+        # 图片停留位置
         if self.flag_pole_score:
-            if self.digit_list[0].rect.y <= 120:
+            if self.digit_list[0].rect.y <= 230:
                 self.y_vel = 0
 
 
@@ -116,9 +147,29 @@ class Score(object):
                 if (score.y - score.digit_list[0].rect.y) > 75:
                     score_list.pop(i)
 
+    def create_image(self, filename, width, height):
+        """Extracts image from sprite sheet"""
+        image = pg.Surface([width, height]).convert()
+        rect = image.get_rect()
+        self.image_yuandan = setup.GFX[filename]
+        image.blit(self.image_yuandan, (0, 0))
+        image.set_colorkey(c.BLACK)
+        image = pg.transform.scale(image,
+                                   (int(rect.width/4),
+                                    int(rect.height/4)))
+        return image
 
-
-
+    def create_image1(self, filename, width, height):
+        """Extracts image from sprite sheet"""
+        image = pg.Surface([width, height]).convert()
+        rect = image.get_rect()
+        self.image_yuandan = setup.GFX[filename]
+        image.blit(self.image_yuandan, (0, 0))
+        image.set_colorkey(c.WHITE)
+        image = pg.transform.scale(image,
+                                   (int(rect.width/4),
+                                    int(rect.height/4)))
+        return image
 
 
 

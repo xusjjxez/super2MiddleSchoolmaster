@@ -15,7 +15,7 @@ from .. components import flagpole
 from .. components import info
 from .. components import score
 from .. components import castle_flag
-
+import random
 
 class Level1(tools._State):
     def __init__(self):
@@ -50,7 +50,8 @@ class Level1(tools._State):
         self.setup_mario()
         self.setup_checkpoints()
         self.setup_spritegroups()
-
+        self.wordList = ['元旦快乐']
+#'猛虎添翼','同舟共济','元旦快乐','团结协作',
 
     def setup_background(self):
         """Sets the background image, rect and scales it to the correct
@@ -77,7 +78,7 @@ class Level1(tools._State):
         ground_rect2 = collider.Collider(862, c.GROUND_HEIGHT,  1112, 60)
         ground_rect3 = collider.Collider(2038, c.GROUND_HEIGHT, 1318, 60)
         ground_rect4 = collider.Collider(3440, c.GROUND_HEIGHT, 955, 60)
-        ground_rect5 = collider.Collider(4458, c.GROUND_HEIGHT, 1642, 60)
+        ground_rect5 = collider.Collider(4458, c.GROUND_HEIGHT, 1594, 60)
 
         self.ground_group = pg.sprite.Group(ground_rect1,
                                            ground_rect2,
@@ -158,79 +159,104 @@ class Level1(tools._State):
         self.powerup_group = pg.sprite.Group()
         self.brick_pieces_group = pg.sprite.Group()
 
-        brick1  = bricks.Brick(858,  205)
-        brick2  = bricks.Brick(944,  205)
-        brick3  = bricks.Brick(1030, 205)
-        brick4  = bricks.Brick(3299, 205)
-        brick5  = bricks.Brick(3385, 205)
-        brick6  = bricks.Brick(3430, 153)
-        brick7  = bricks.Brick(3473, 153)
-        brick8  = bricks.Brick(3516, 153)
-        brick9  = bricks.Brick(3559, 153)
-        brick10 = bricks.Brick(3602, 153)
-        brick11 = bricks.Brick(3645, 153)
-        brick12 = bricks.Brick(3688, 153)
-        brick13 = bricks.Brick(3731, 153)
-        brick14 = bricks.Brick(3901, 153)
-        brick15 = bricks.Brick(3944, 153)
-        brick16 = bricks.Brick(3987, 153)
-        brick17 = bricks.Brick(4030, 205, c.SIXCOINS, self.coin_group)
-        brick18 = bricks.Brick(4287, 205)
-        brick19 = bricks.Brick(4330, 205, c.STAR, self.powerup_group)
-        brick20 = bricks.Brick(5058, 205)
-        brick21 = bricks.Brick(5187, 153)
-        brick22 = bricks.Brick(5230, 153)
-        brick23 = bricks.Brick(5273, 153)
+        #xingzheng
+        brick1  = bricks.Brick(475,  530)
+        # brick11  = bricks.Brick(675,  530)
+
+        #gaoyi
+        brick2  = bricks.Brick(1350,  330)
+        brick3  = bricks.Brick(1470, 330)
+        brick4  = bricks.Brick(1580, 490)
+        brick41  = bricks.Brick(1520, 490)
+
+
+        #gaoer
+        brick5  = bricks.Brick(2180, 550)
+        brick6  = bricks.Brick(2240, 550)
+        brick7  = bricks.Brick(2300, 550)
+
+        #gaosan
+        brick9  = bricks.Brick(3559, 373)
+        brick10 = bricks.Brick(3602, 373)
+        brick11 = bricks.Brick(3645, 373)
+        brick12 = bricks.Brick(3688, 373)
+        brick13 = bricks.Brick(3731, 373)
+        brick14 = bricks.Brick(3901, 373)
+        brick15 = bricks.Brick(3944, 373)
+        brick16 = bricks.Brick(3987, 373)
+
+        # brick17 = bricks.Brick(4030, 205, c.SIXCOINS, self.coin_group)
+        #final
+        brick18 = bricks.Brick(4500, 505)
+        brick19 = bricks.Brick(4570, 505, c.SIXCOINS, self.coin_group)
+
+        brick20 = bricks.Brick(5058, 305)
+        brick21 = bricks.Brick(5187, 305)
+        brick22 = bricks.Brick(5230, 305)
         brick24 = bricks.Brick(5488, 153)
         brick25 = bricks.Brick(5574, 153)
         brick26 = bricks.Brick(5617, 153)
-        brick27 = bricks.Brick(5531, 205)
-        brick28 = bricks.Brick(5574, 205)
-        brick29 = bricks.Brick(7202, 205)
-        brick30 = bricks.Brick(7245, 205)
-        brick31 = bricks.Brick(7331, 205)
 
-        self.brick_group = pg.sprite.Group(brick1,  brick2,
-                                           brick3,  brick4,
+        # brick27 = bricks.Brick(5531, 205)
+        # brick28 = bricks.Brick(5574, 205)
+
+
+        self.brick_group = pg.sprite.Group(brick1, brick2,
+                                           brick3,  brick4,brick41,
                                            brick5,  brick6,
-                                           brick7,  brick8,
+                                           brick7,
                                            brick9,  brick10,
                                            brick11, brick12,
                                            brick13, brick14,
                                            brick15, brick16,
-                                           brick17, brick18,
+                                           brick18,
                                            brick19, brick20,
                                            brick21, brick22,
-                                           brick23, brick24,
-                                           brick25, brick26,
-                                           brick27, brick28,
-                                           brick29, brick30,
-                                           brick31)
+                                           brick24,
+                                           brick25, brick26
+                                           )
 
 
     def setup_coin_boxes(self):
         """Creates all the coin boxes and puts them in a sprite group"""
-        coin_box1  = coin_box.Coin_box(5712, c.GROUND_HEIGHT, c.COIN, self.coin_group)
+        #xingzheng
+        coin_box1  = coin_box.Coin_box(335, 530, c.COIN, self.coin_group)
+        coin_box111  = coin_box.Coin_box(375, 330, c.COIN, self.coin_group)
 
-        # coin_box1  = coin_box.Coin_box(685, 515, c.COIN, self.coin_group)
-        coin_box2  = coin_box.Coin_box(901, 515, c.MUSHROOM, self.powerup_group)
-        coin_box3  = coin_box.Coin_box(987, 515, c.COIN, self.coin_group)
-        coin_box4  = coin_box.Coin_box(943, 303, c.COIN, self.coin_group)
-        coin_box5  = coin_box.Coin_box(3342, 515, c.MUSHROOM, self.powerup_group)
-        coin_box6  = coin_box.Coin_box(4030, 303, c.COIN, self.coin_group)
-        coin_box7  = coin_box.Coin_box(4544, 515, c.COIN, self.coin_group)
-        coin_box8  = coin_box.Coin_box(4672, 515, c.COIN, self.coin_group)
-        coin_box9  = coin_box.Coin_box(4672, 303, c.MUSHROOM, self.powerup_group)
-        coin_box10 = coin_box.Coin_box(4800, 515, c.COIN, self.coin_group)
-        coin_box11 = coin_box.Coin_box(5531, 303, c.COIN, self.coin_group)
-        coin_box12 = coin_box.Coin_box(7288, 515, c.COIN, self.coin_group)
+        coin_box21  = coin_box.Coin_box(415, 530, c.COIN, self.coin_group)
+        coin_box2  = coin_box.Coin_box(535, 530, c.COIN, self.coin_group)
 
-        self.coin_box_group = pg.sprite.Group(coin_box1,  coin_box2,
+        #gaoyi
+        coin_box3  = coin_box.Coin_box(1370, 530, c.COIN, self.coin_group)
+        coin_box4  = coin_box.Coin_box(1410, 330, c.COIN, self.coin_group)
+
+        #gaoer
+        coin_box5  = coin_box.Coin_box(2250, 300, c.COIN, self.coin_group)
+        coin_box6  = coin_box.Coin_box(2700, 500, c.COIN, self.coin_group)
+        coin_box7  = coin_box.Coin_box(2780, 500, c.COIN, self.coin_group)
+        coin_box8  = coin_box.Coin_box(2860, 500, c.COIN, self.coin_group)
+
+        #gaosan
+        coin_box9  = coin_box.Coin_box(3490, 540, c.COIN, self.coin_group)
+        coin_box10 = coin_box.Coin_box(3650, 180, c.COIN, self.coin_group)
+        coin_box11 = coin_box.Coin_box(4150, 550, c.COIN, self.coin_group)
+
+        #final
+        coin_box12 = coin_box.Coin_box(5000, 505, c.COIN, self.coin_group)
+        coin_box13 = coin_box.Coin_box(5080, 505, c.COIN, self.coin_group)
+        coin_box14 = coin_box.Coin_box(5160, 505, c.COIN, self.coin_group)
+        coin_box15 = coin_box.Coin_box(5260, 405, c.COIN, self.coin_group)
+
+
+
+        self.coin_box_group = pg.sprite.Group(coin_box1,  coin_box111,coin_box2,coin_box21,
                                               coin_box3,  coin_box4,
                                               coin_box5,  coin_box6,
                                               coin_box7,  coin_box8,
                                               coin_box9,  coin_box10,
-                                              coin_box11, coin_box12)
+                                              coin_box11,coin_box12,
+                                              coin_box13,coin_box14,
+                                              coin_box15)
 
 
     def setup_flag_pole(self):
@@ -433,18 +459,17 @@ class Level1(tools._State):
         check6 = checkpoint.Checkpoint(4150, '6')
 
         check11 = checkpoint.Checkpoint(5712, '11', 5, 6)
-        checkF1 = checkpoint.Checkpoint(648, 'flag1', 5, 6)
+        checkF1 = checkpoint.Checkpoint(652, 'flag1', 5, 6)
         checkF2 = checkpoint.Checkpoint(1872, 'flag2', 5, 6)
         checkF3 = checkpoint.Checkpoint(3248, 'flag3', 5, 6)
         checkF4 = checkpoint.Checkpoint(4278, 'flag4', 5, 6)
 
-        check12 = checkpoint.Checkpoint(5894, '12')
-        check13 = checkpoint.Checkpoint(2740, 'secret_mushroom', 360, 40, 12)
+        check12 = checkpoint.Checkpoint(5860, '12')
+        # check13 = checkpoint.Checkpoint(2740, 'secret_mushroom', 360, 40, 12)
 
         self.check_point_group = pg.sprite.Group(check1, check2, check3,
                                                  check4, check5, check6,
-                                                 check11, check12,checkF1,checkF2,checkF3,checkF4,
-                                                 check13)
+                                                 check11, check12,checkF1,checkF2,checkF3,checkF4)
 
 
     def setup_spritegroups(self):
@@ -465,6 +490,7 @@ class Level1(tools._State):
         """Updates Entire level using states.  Called by the control object"""
         self.game_info[c.CURRENT_TIME] = self.current_time = current_time
         self.handle_states(keys)
+        # print("mario x=", self.mario.rect.x)
         self.check_if_time_out()
         self.blit_everything(surface)
         self.sound_manager.update(self.game_info, self.mario)
@@ -562,7 +588,7 @@ class Level1(tools._State):
                 if self.mario.rect.bottom < self.flag.rect.y:
                     self.mario.rect.bottom = self.flag.rect.y
                 self.flag.state = c.SLIDE_DOWN
-                self.create_flag_points(5888)
+                self.create_flag_points(5712)
 
             elif checkpoint.name == 'flag1':
                 self.mario.state = c.CENTER_FLAGPOLE
@@ -628,24 +654,45 @@ class Level1(tools._State):
         """Creates the points that appear when Mario touches the
         flag pole"""
         # x = 5888
-        y = c.GROUND_HEIGHT - 60
-        mario_bottom = self.mario.rect.bottom
 
-        if mario_bottom > (c.GROUND_HEIGHT - 40 - 40):
-            self.flag_score = score.Score(x, y, 100, True)
-            self.flag_score_total = 100
-        elif mario_bottom > (c.GROUND_HEIGHT - 40 - 160):
-            self.flag_score = score.Score(x, y, 400, True)
-            self.flag_score_total = 400
-        elif mario_bottom > (c.GROUND_HEIGHT - 40 - 240):
-            self.flag_score = score.Score(x, y, 800, True)
-            self.flag_score_total = 800
-        elif mario_bottom > (c.GROUND_HEIGHT - 40 - 360):
-            self.flag_score = score.Score(x, y, 2000, True)
+        y = c.GROUND_HEIGHT - 60
+
+        # if x >= 643 and x < 1000:
+        #     self.moving_score_list.append(score.Score(643, y, '高一威武', True))
+        # elif x >= 1833 and x < 2000:
+        #     self.moving_score_list.append(score.Score(1886, y, '高一威武', True))
+        #
+        # elif x >= 3248 and x < 3500:
+        #     self.moving_score_list.append(score.Score(x, y, '高三必胜', True))
+        #
+        # elif x >= 4278 and x < 4600:
+        #     self.moving_score_list.append(score.Score(x, y, '高考加油', True))
+        #
+        # elif x >= 5712:
+        #     self.moving_score_list.append(score.Score(x, y, '元旦快乐', True))
+
+        # mario_bottom = self.mario.rect.bottom
+        mario_x = self.mario.rect.x
+        # print("x=", x)
+        # print("mario_x=", mario_x)
+
+        if mario_x > 5650:
+            self.flag_score = score.Score(x, y, '元旦快乐', True)
             self.flag_score_total = 2000
-        else:
-            self.flag_score = score.Score(x, y, 5000, True)
-            self.flag_score_total = 5000
+        elif mario_x > 4200:
+            self.flag_score = score.Score(x, y, '高考加油', True)
+            self.flag_score_total = 800
+        elif mario_x > 3200:
+            self.flag_score = score.Score(x, y, '高三必胜', True)
+            self.flag_score_total = 400
+        elif mario_x > 1800:
+            self.flag_score = score.Score(x, y, '高二无敌', True)
+            self.flag_score_total = 100
+        elif mario_x > 600:
+            self.flag_score = score.Score(x, y, '高一威武', True)
+            self.flag_score_total = 100
+
+
 
 
     def adjust_sprite_positions(self):
@@ -673,6 +720,7 @@ class Level1(tools._State):
 
     def check_mario_x_collisions(self):
         """Check for collisions after Mario is moved on the x axis"""
+
         collider = pg.sprite.spritecollideany(self.mario, self.ground_step_pipe_group)
         coin_box = pg.sprite.spritecollideany(self.mario, self.coin_box_group)
         brick = pg.sprite.spritecollideany(self.mario, self.brick_group)
@@ -695,7 +743,7 @@ class Level1(tools._State):
                 self.game_info[c.SCORE] += 100
                 self.moving_score_list.append(
                     score.Score(self.mario.rect.right - self.viewport.x,
-                                self.mario.rect.y, 100))
+                                self.mario.rect.y, random.sample(self.wordList, 1)[0]))
                 enemy.kill()
                 enemy.start_death_jump(c.RIGHT)
                 self.sprites_about_to_die_group.add(enemy)
@@ -720,7 +768,7 @@ class Level1(tools._State):
 
                 self.moving_score_list.append(
                     score.Score(self.mario.rect.centerx - self.viewport.x,
-                                self.mario.rect.y, 1000))
+                                self.mario.rect.y, random.sample(self.wordList,1)[0]))
                 self.mario.invincible = True
                 self.mario.invincible_start_timer = self.current_time
             elif powerup.name == c.MUSHROOM:
@@ -728,7 +776,7 @@ class Level1(tools._State):
                 self.game_info[c.SCORE] += 1000
                 self.moving_score_list.append(
                     score.Score(self.mario.rect.centerx - self.viewport.x,
-                                self.mario.rect.y - 20, 1000000))
+                                self.mario.rect.y - 20, random.sample(self.wordList,1)[0]))
 
                 self.mario.y_vel = -1
                 self.mario.state = c.SMALL_TO_BIG
@@ -747,7 +795,7 @@ class Level1(tools._State):
                 self.game_info[c.SCORE] += 1000
                 self.moving_score_list.append(
                     score.Score(self.mario.rect.centerx - self.viewport.x,
-                                self.mario.rect.y, 1000))
+                                self.mario.rect.y, random.sample(self.wordList,1)[0]))
 
                 if self.mario.big and self.mario.fire == False:
                     self.mario.state = c.BIG_TO_FIRE
@@ -800,8 +848,7 @@ class Level1(tools._State):
                 self.game_info[c.SCORE] += 400
                 self.moving_score_list.append(
                     score.Score(shell.rect.centerx - self.viewport.x,
-                                shell.rect.y,
-                                400))
+                                shell.rect.y,random.sample(self.wordList,1)[0]))
                 self.mario.rect.right = shell.rect.left
                 shell.direction = c.RIGHT
                 shell.x_vel = 5
@@ -822,7 +869,7 @@ class Level1(tools._State):
                 self.game_info[c.SCORE] += 200
                 self.moving_score_list.append(
                     score.Score(shell.rect.right - self.viewport.x,
-                                shell.rect.y, 200))
+                                shell.rect.y, random.sample(self.wordList,1)[0]))
                 shell.kill()
                 self.sprites_about_to_die_group.add(shell)
                 shell.start_death_jump(c.RIGHT)
@@ -898,6 +945,9 @@ class Level1(tools._State):
             if coin_box.state == c.RESTING:
                 if coin_box.contents == c.COIN:
                     self.game_info[c.SCORE] += 200
+                    self.moving_score_list.append(
+                        score.Score(coin_box.rect.right - self.viewport.x,
+                                    coin_box.rect.y, random.sample(self.wordList, 1)[0]))
                     coin_box.start_bump(self.moving_score_list)
                     if coin_box.contents == c.COIN:
                         self.game_info[c.COIN_TOTAL] += 1
@@ -942,6 +992,9 @@ class Level1(tools._State):
                     if brick.coin_total > 0:
                         self.game_info[c.COIN_TOTAL] += 1
                         self.game_info[c.SCORE] += 200
+                        self.moving_score_list.append(
+                            score.Score(brick.rect.right - self.viewport.x,
+                                        brick.rect.y, random.sample(self.wordList, 1)[0]))
                     self.check_if_enemy_on_brick(brick)
                     brick.start_bump(self.moving_score_list)
             elif brick.state == c.OPENED:
@@ -967,8 +1020,7 @@ class Level1(tools._State):
             self.game_info[c.SCORE] += 100
             self.moving_score_list.append(
                 score.Score(enemy.rect.centerx - self.viewport.x,
-                            enemy.rect.y,
-                            100))
+                            enemy.rect.y,random.sample(self.wordList, 1)[0]))
             enemy.kill()
             self.sprites_about_to_die_group.add(enemy)
             if self.mario.rect.centerx > brick.rect.centerx:
@@ -989,7 +1041,7 @@ class Level1(tools._State):
                 self.mario.state = c.WALKING_TO_CASTLE
             else:
                 self.mario.state = c.WALK
-        elif self.mario.top > collider.rect.top:
+        elif self.mario.rect.top > collider.rect.top:
             self.mario.y_vel = 7
             self.mario.rect.top = collider.rect.bottom
             self.mario.state = c.FALL
@@ -1029,7 +1081,7 @@ class Level1(tools._State):
             self.game_info[c.SCORE] += 100
             self.moving_score_list.append(
                 score.Score(enemy.rect.centerx - self.viewport.x,
-                            enemy.rect.y, 100))
+                            enemy.rect.y, random.sample(self.wordList, 1)[0]))
             enemy.state = c.JUMPED_ON
             enemy.kill()
             if enemy.name == c.GOOMBA:
@@ -1050,7 +1102,7 @@ class Level1(tools._State):
             self.game_info[c.SCORE] += 400
             self.moving_score_list.append(
                 score.Score(self.mario.rect.centerx - self.viewport.x,
-                            self.mario.rect.y, 400))
+                            self.mario.rect.y, random.sample(self.wordList, 1)[0]))
             if shell.state == c.JUMPED_ON:
                 setup.SFX['kick'].play()
                 shell.state = c.SHELL_SLIDE
@@ -1152,7 +1204,7 @@ class Level1(tools._State):
                 self.game_info[c.SCORE] += 100
                 self.moving_score_list.append(
                     score.Score(enemy.rect.centerx - self.viewport.x,
-                                enemy.rect.y, 100))
+                                enemy.rect.y, random.sample(self.wordList, 1)[0]))
                 enemy.kill()
                 self.sprites_about_to_die_group.add(enemy)
                 if self.mario.rect.centerx > coin_box.rect.centerx:
@@ -1213,7 +1265,7 @@ class Level1(tools._State):
             self.game_info[c.SCORE] += 100
             self.moving_score_list.append(
                 score.Score(enemy.rect.right - self.viewport.x,
-                            enemy.rect.y, 100))
+                            enemy.rect.y, random.sample(self.wordList, 1)[0]))
             enemy.kill()
             self.sprites_about_to_die_group.add(enemy)
             enemy.start_death_jump(shell.direction)
@@ -1541,7 +1593,7 @@ class Level1(tools._State):
 
         if self.overhead_info_display.state == c.END_OF_LEVEL:
             self.state = c.FLAG_AND_FIREWORKS
-            self.flag_pole_group.add(castle_flag.Flag(8745, 322))
+            self.flag_pole_group.add(castle_flag.Flag(5860, 640))
 
 
     def update_flag_and_fireworks(self):
@@ -1576,7 +1628,7 @@ class Level1(tools._State):
         self.coin_box_group.draw(self.level)
         self.sprites_about_to_die_group.draw(self.level)
         self.shell_group.draw(self.level)
-        #self.check_point_group.draw(self.level)
+        # self.check_point_group.draw(self.level)
         self.brick_pieces_group.draw(self.level)
         self.flag_pole_group.draw(self.level)
         self.flag_pole_group1.draw(self.level)

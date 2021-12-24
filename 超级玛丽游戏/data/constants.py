@@ -38,8 +38,8 @@ BACKGROUND_MULTIPLER = 1.8 #背景图片放大比例
 GROUND_HEIGHT = SCREEN_HEIGHT - 37
 
 #MARIO FORCES
-WALK_ACCEL = .15
-RUN_ACCEL = 20
+WALK_ACCEL = .08
+RUN_ACCEL = 10
 SMALL_TURNAROUND = .35
 
 GRAVITY = 1.4
@@ -112,6 +112,7 @@ STAR = 'star'
 FIREFLOWER = 'fireflower'
 SIXCOINS = '6coins'
 COIN = 'coin'
+
 LIFE_MUSHROOM = '1up_mushroom'
 
 FIREBALL = 'fireball'
@@ -126,6 +127,7 @@ KOOPA = 'koopa'
 FROZEN = 'frozen'
 NOT_FROZEN = 'not frozen'
 IN_CASTLE = 'in castle'
+END_FIREWORKS = ''
 FLAG_AND_FIREWORKS = 'flag and fireworks'
 
 #FLAG STATE
